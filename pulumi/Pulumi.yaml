@@ -1,0 +1,11 @@
+name: samarpan-portfolio
+runtime:
+  name: nodejs
+  options:
+    packagemanager: npm
+description: Infrastructure for the samarpan-portfolio Next.js app on AWS Amplify.
+
+config:
+  aws:region:
+    description: AWS region for Amplify resources.
+    default: us-east-1
