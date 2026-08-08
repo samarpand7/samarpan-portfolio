@@ -1,0 +1,15 @@
+{
+  "name": "samarpan-portfolio-iac",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pulumi infrastructure for the samarpan-portfolio Amplify app.",
+  "main": "index.ts",
+  "devDependencies": {
+    "@types/node": "^22.16.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@pulumi/aws": "^6.66.0",
+    "@pulumi/pulumi": "^3.145.0"
+  }
+}
