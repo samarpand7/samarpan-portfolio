@@ -163,23 +163,13 @@ export default function Home() {
             </Text>
 
             <HStack spacing={3} flexWrap="wrap">
-              <Button
-                as={Link}
-                href="#featured"
-                colorScheme="gray"
-                bg="gray.900"
-                _hover={{ bg: "black" }}
-              >
+              <Button as={Link} href="#featured" variant="outline">
                 Explore work
               </Button>
               <Button as={Link} href="#contact" variant="outline">
                 Get in touch
               </Button>
-              <Button
-                as={Link}
-                href="/Samarpan_Dutta_CV.pdf"
-                variant="ghost"
-              >
+              <Button as={Link} href="/Samarpan_Dutta_CV.pdf" variant="outline">
                 Download CV
               </Button>
             </HStack>
