@@ -4,8 +4,13 @@ runtime:
   options:
     packagemanager: npm
 description: Infrastructure for the samarpan-portfolio Next.js app on AWS Amplify.
+backend:
+  url: https://api.pulumi.com
 
 config:
   aws:region:
     description: AWS region for Amplify resources.
-    default: us-east-1
+    value: us-east-1
+  aws:profile:
+    description: AWS named profile used for deployments.
+    value: root

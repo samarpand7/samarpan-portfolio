@@ -1,0 +1,5 @@
+config:
+  samarpan-portfolio:repositoryUrl: https://github.com/samarpand7/samarpan-portfolio
+  samarpan-portfolio:customDomain: samsblogspace.com
+  samarpan-portfolio:githubAccessToken:
+    secure: AAABABHhi16SQ6Kjlga59R5YjR7ukUlfaeB/Y6Q4UQQCRwfPcBSgBvdKB5hLsB4A9noupFvCPHIqGxtBWZmGckoiKQNO+JRMsBIjcKK/ssuog88sHXhm5apLO4DFAdm1wocl3xQRYD6ATKvZCWFg4cHCwUk2XSfEqH0XVlY=
