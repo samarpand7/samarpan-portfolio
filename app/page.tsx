@@ -4,43 +4,20 @@ import {
   Button,
   Container,
   Divider,
-  Flex,
   Heading,
   HStack,
   Icon,
   Link,
   SimpleGrid,
   Stack,
-  Text,
-  VStack
+  Text
 } from "@chakra-ui/react";
-
-function ExternalLink(props: {
-  href: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      href={props.href}
-      isExternal
-      color="gray.700"
-      _hover={{ color: "gray.900", textDecoration: "none" }}
-    >
-      {props.children}
-    </Link>
-  );
-}
-
-function SectionTitle(props: { children: React.ReactNode }) {
-  return (
-    <HStack spacing={3} align="center">
-      <Box w="10px" h="10px" bg="gray.900" borderRadius="full" />
-      <Heading as="h2" fontSize={{ base: "lg", md: "xl" }}>
-        {props.children}
-      </Heading>
-    </HStack>
-  );
-}
+import {
+  SectionTitle,
+  SiteFooter,
+  SiteHeader,
+  SocialLinks
+} from "./components/site-chrome";
 
 function FeatureCard(props: {
   eyebrow: string;
@@ -103,47 +80,7 @@ function FeatureCard(props: {
 export default function Home() {
   return (
     <Box minH="100vh">
-      <Box as="header" borderBottomWidth="1px" borderColor="gray.100">
-        <Container maxW="6xl" py={5}>
-          <Flex align="center" justify="space-between" gap={6}>
-            <Box>
-              <Heading as="h1" fontSize={{ base: "lg", md: "xl" }}>
-                Samarpan Dutta
-              </Heading>
-              <Text color="gray.600" fontSize="sm">
-                ML / AI • Software Engineering
-              </Text>
-            </Box>
-
-            <HStack spacing={{ base: 3, md: 6 }} fontSize="sm">
-              <Link href="#blog" color="gray.700" _hover={{ color: "gray.900" }}>
-                Blog
-              </Link>
-              <Link
-                href="#talks"
-                color="gray.700"
-                _hover={{ color: "gray.900" }}
-              >
-                Talks
-              </Link>
-              <Link
-                href="#publications"
-                color="gray.700"
-                _hover={{ color: "gray.900" }}
-              >
-                Publications
-              </Link>
-              <Link
-                href="#contact"
-                color="gray.700"
-                _hover={{ color: "gray.900" }}
-              >
-                Contact
-              </Link>
-            </HStack>
-          </Flex>
-        </Container>
-      </Box>
+      <SiteHeader />
 
       <Container maxW="6xl" py={{ base: 10, md: 16 }}>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 10, md: 14 }}>
@@ -174,15 +111,7 @@ export default function Home() {
               </Button>
             </HStack>
 
-            <HStack spacing={4} fontSize="sm" color="gray.700">
-              <ExternalLink href="https://www.linkedin.com/in/your-handle">
-                LinkedIn
-              </ExternalLink>
-              <ExternalLink href="https://github.com/your-handle">
-                GitHub
-              </ExternalLink>
-              <ExternalLink href="mailto:hello@example.com">Email</ExternalLink>
-            </HStack>
+            <SocialLinks />
           </Stack>
 
           <Box>
@@ -259,194 +188,9 @@ export default function Home() {
             />
           </SimpleGrid>
         </Box>
-
-        <Stack spacing={12} pt={{ base: 14, md: 18 }}>
-          <Box id="blog">
-            <SectionTitle>Blog</SectionTitle>
-            <Text mt={3} color="gray.700" maxW="3xl">
-              Insights, tutorials, and build logs from applied ML and GenAI.
-            </Text>
-            <Stack mt={6} spacing={4}>
-              {[
-                {
-                  title: "Evaluating RAG systems beyond basic accuracy",
-                  desc: "A lightweight framework for grounding, usefulness, and failure-mode analysis.",
-                  href: "https://example.com"
-                },
-                {
-                  title: "Practical guardrails for agent workflows",
-                  desc: "How to constrain tools, measure reliability, and ship safely.",
-                  href: "https://example.com"
-                },
-                {
-                  title: "From notebook to production: an ML checklist",
-                  desc: "What usually breaks, and how to prevent it early.",
-                  href: "https://example.com"
-                }
-              ].map((item) => (
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  isExternal
-                  borderWidth="1px"
-                  borderColor="gray.200"
-                  borderRadius="2xl"
-                  p={{ base: 5, md: 6 }}
-                  _hover={{ textDecoration: "none", borderColor: "gray.300" }}
-                >
-                  <Heading as="h3" fontSize={{ base: "lg", md: "xl" }}>
-                    {item.title}
-                  </Heading>
-                  <Text mt={2} color="gray.700">
-                    {item.desc}
-                  </Text>
-                </Link>
-              ))}
-            </Stack>
-          </Box>
-
-          <Box id="talks">
-            <SectionTitle>Talks</SectionTitle>
-            <Text mt={3} color="gray.700" maxW="3xl">
-              Meetups, workshops, and conference sessions.
-            </Text>
-            <VStack align="stretch" mt={6} spacing={4}>
-              {[
-                {
-                  when: "2026",
-                  title: "Shipping reliable GenAI systems",
-                  where: "Industry meetup"
-                },
-                {
-                  when: "2025",
-                  title: "RAG evaluation and failure-mode analysis",
-                  where: "Tech summit"
-                },
-                {
-                  when: "2024",
-                  title: "Data-centric iteration for ML products",
-                  where: "University talk"
-                }
-              ].map((t) => (
-                <Flex
-                  key={t.title}
-                  justify="space-between"
-                  gap={4}
-                  borderWidth="1px"
-                  borderColor="gray.200"
-                  borderRadius="2xl"
-                  p={{ base: 5, md: 6 }}
-                >
-                  <Box>
-                    <Heading as="h3" fontSize={{ base: "lg", md: "xl" }}>
-                      {t.title}
-                    </Heading>
-                    <Text mt={1} color="gray.700">
-                      {t.where}
-                    </Text>
-                  </Box>
-                  <Text color="gray.600" fontWeight="semibold">
-                    {t.when}
-                  </Text>
-                </Flex>
-              ))}
-            </VStack>
-          </Box>
-
-          <Box id="publications">
-            <SectionTitle>Publications</SectionTitle>
-            <Text mt={3} color="gray.700" maxW="3xl">
-              Selected research and writing.
-            </Text>
-            <Stack mt={6} spacing={4}>
-              {[
-                {
-                  title: "A practical framework for bias-aware self-learning",
-                  meta: "Journal / 2025",
-                  href: "https://example.com"
-                },
-                {
-                  title: "Robust evaluation under sampling bias",
-                  meta: "Conference / 2024",
-                  href: "https://example.com"
-                }
-              ].map((p) => (
-                <Link
-                  key={p.title}
-                  href={p.href}
-                  isExternal
-                  borderWidth="1px"
-                  borderColor="gray.200"
-                  borderRadius="2xl"
-                  p={{ base: 5, md: 6 }}
-                  _hover={{ textDecoration: "none", borderColor: "gray.300" }}
-                >
-                  <HStack justify="space-between" align="start">
-                    <Box>
-                      <Heading as="h3" fontSize={{ base: "lg", md: "xl" }}>
-                        {p.title}
-                      </Heading>
-                      <Text mt={1} color="gray.600">
-                        {p.meta}
-                      </Text>
-                    </Box>
-                    <Text color="gray.900" fontWeight="semibold">
-                      View
-                    </Text>
-                  </HStack>
-                </Link>
-              ))}
-            </Stack>
-          </Box>
-        </Stack>
       </Container>
 
-      <Box as="footer" borderTopWidth="1px" borderColor="gray.100">
-        <Container maxW="6xl" py={10}>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
-            <Box id="contact">
-              <Heading as="h2" fontSize={{ base: "xl", md: "2xl" }}>
-                Get in touch
-              </Heading>
-              <Text mt={2} color="gray.700" maxW="lg">
-                Interested in collaboration, speaking, or consulting? Send a
-                note and I’ll reply soon.
-              </Text>
-              <HStack mt={4} spacing={3}>
-                <Button
-                  as={Link}
-                  href="mailto:hello@example.com"
-                  colorScheme="gray"
-                  bg="gray.900"
-                  _hover={{ bg: "black" }}
-                >
-                  Email me
-                </Button>
-                <Button as={Link} href="https://cal.com" isExternal variant="outline">
-                  Schedule
-                </Button>
-              </HStack>
-            </Box>
-
-            <Box>
-              <Text color="gray.600" fontSize="sm">
-                © {new Date().getFullYear()} Samarpan Dutta. All opinions are my
-                own.
-              </Text>
-              <HStack mt={3} spacing={5} fontSize="sm">
-                <ExternalLink href="https://github.com/your-handle">
-                  GitHub
-                </ExternalLink>
-                <ExternalLink href="https://www.linkedin.com/in/your-handle">
-                  LinkedIn
-                </ExternalLink>
-                <ExternalLink href="https://x.com/your-handle">X</ExternalLink>
-              </HStack>
-            </Box>
-          </SimpleGrid>
-        </Container>
-      </Box>
+      <SiteFooter />
     </Box>
   );
 }
-
