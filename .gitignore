@@ -142,3 +142,7 @@ vite.config.ts.timestamp-*
 pulumi/node_modules/
 pulumi/bin/
 Pulumi.*.yaml.bak
+
+.u2net/
+headshot.original.jpeg
+.venv-img/
