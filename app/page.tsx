@@ -1,7 +1,6 @@
 import {
   Badge,
   Box,
-  Button,
   Container,
   Divider,
   Heading,
@@ -12,12 +11,8 @@ import {
   Stack,
   Text
 } from "@chakra-ui/react";
-import {
-  SectionTitle,
-  SiteFooter,
-  SiteHeader,
-  SocialLinks
-} from "./components/site-chrome";
+import { HeroIntro } from "./components/hero-intro";
+import { SectionTitle, SiteFooter, SiteHeader } from "./components/site-chrome";
 
 function FeatureCard(props: {
   eyebrow: string;
@@ -81,77 +76,44 @@ export default function Home() {
   return (
     <Box minH="100vh">
       <SiteHeader />
+      <HeroIntro />
 
       <Container maxW="6xl" py={{ base: 10, md: 16 }}>
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 10, md: 14 }}>
-          <Stack spacing={6}>
-            <Heading
-              as="h2"
-              fontSize={{ base: "3xl", md: "5xl" }}
-              letterSpacing="-0.02em"
-              lineHeight="1.05"
-            >
-              Building practical ML systems and agentic applications.
-            </Heading>
-            <Text fontSize={{ base: "md", md: "lg" }} color="gray.700">
-              I’m a Machine Learning engineer focused on turning research into
-              reliable products: retrieval + generation, evaluation, MLOps, and
-              data-centric iteration.
+        <Box
+          borderWidth="1px"
+          borderColor="gray.200"
+          borderRadius="3xl"
+          p={{ base: 6, md: 8 }}
+          maxW="3xl"
+        >
+          <Stack spacing={4}>
+            <Text fontSize="sm" color="gray.600">
+              Currently
             </Text>
-
+            <Heading as="h3" fontSize={{ base: "xl", md: "2xl" }}>
+              Open to collaborations in applied AI.
+            </Heading>
+            <Text color="gray.700">
+              If you’re building LLM products, agent workflows, or ML platforms,
+              I can help with prototyping, evaluation, and production hardening.
+            </Text>
+            <Divider />
             <HStack spacing={3} flexWrap="wrap">
-              <Button as={Link} href="#featured" variant="outline">
-                Explore work
-              </Button>
-              <Button as={Link} href="#contact" variant="outline">
-                Get in touch
-              </Button>
-              <Button as={Link} href="/Samarpan_Dutta_CV.pdf" variant="outline">
-                Download CV
-              </Button>
+              <Badge variant="subtle" colorScheme="gray">
+                LLM evaluation
+              </Badge>
+              <Badge variant="subtle" colorScheme="gray">
+                RAG
+              </Badge>
+              <Badge variant="subtle" colorScheme="gray">
+                MLOps
+              </Badge>
+              <Badge variant="subtle" colorScheme="gray">
+                Data pipelines
+              </Badge>
             </HStack>
-
-            <SocialLinks />
           </Stack>
-
-          <Box>
-            <Box
-              borderWidth="1px"
-              borderColor="gray.200"
-              borderRadius="3xl"
-              p={{ base: 6, md: 8 }}
-            >
-              <Stack spacing={4}>
-                <Text fontSize="sm" color="gray.600">
-                  Currently
-                </Text>
-                <Heading as="h3" fontSize={{ base: "xl", md: "2xl" }}>
-                  Open to collaborations in applied AI.
-                </Heading>
-                <Text color="gray.700">
-                  If you’re building LLM products, agent workflows, or ML
-                  platforms, I can help with prototyping, evaluation, and
-                  production hardening.
-                </Text>
-                <Divider />
-                <HStack spacing={3} flexWrap="wrap">
-                  <Badge variant="subtle" colorScheme="gray">
-                    LLM evaluation
-                  </Badge>
-                  <Badge variant="subtle" colorScheme="gray">
-                    RAG
-                  </Badge>
-                  <Badge variant="subtle" colorScheme="gray">
-                    MLOps
-                  </Badge>
-                  <Badge variant="subtle" colorScheme="gray">
-                    Data pipelines
-                  </Badge>
-                </HStack>
-              </Stack>
-            </Box>
-          </Box>
-        </SimpleGrid>
+        </Box>
 
         <Box id="featured" pt={{ base: 12, md: 16 }}>
           <SectionTitle>Featured</SectionTitle>
