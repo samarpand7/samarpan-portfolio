@@ -1,5 +1,6 @@
+"use client";
+
 import {
-  Avatar,
   Box,
   Button,
   Container,
@@ -7,9 +8,12 @@ import {
   Heading,
   HStack,
   Icon,
+  IconButton,
   Link,
   SimpleGrid,
-  Text
+  Text,
+  useDisclosure,
+  VStack
 } from "@chakra-ui/react";
 
 function SocialIconLink(props: {
@@ -109,33 +113,49 @@ const navItems = [
   { href: "/#contact", label: "Contact" }
 ] as const;
 
+function MenuIcon() {
+  return (
+    <Icon viewBox="0 0 24 24" boxSize={5} aria-hidden>
+      <path
+        fill="currentColor"
+        d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"
+      />
+    </Icon>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <Icon viewBox="0 0 24 24" boxSize={5} aria-hidden>
+      <path
+        fill="currentColor"
+        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+      />
+    </Icon>
+  );
+}
+
 export function SiteHeader() {
+  const { isOpen, onToggle, onClose } = useDisclosure();
+
   return (
     <Box as="header" borderBottomWidth="1px" borderColor="gray.100">
       <Container maxW="6xl" py={5}>
         <Flex align="center" justify="space-between" gap={6}>
-          <Link href="/" _hover={{ textDecoration: "none" }}>
-            <HStack spacing={3} align="center">
-              <Avatar
-                name="Samarpan Dutta"
-                size="md"
-                bg="gray.200"
-                color="gray.700"
-                borderWidth="1px"
-                borderColor="gray.300"
-              />
-              <Box>
-                <Heading as="h1" fontSize={{ base: "lg", md: "xl" }}>
-                  Samarpan Dutta
-                </Heading>
-                <Text color="gray.600" fontSize="sm">
-                  ML / AI • Software Engineering
-                </Text>
-              </Box>
-            </HStack>
+          <Link
+            href="/"
+            fontWeight="semibold"
+            color="gray.900"
+            _hover={{ textDecoration: "none", color: "gray.700" }}
+          >
+            Samarpan Dutta
           </Link>
 
-          <HStack spacing={{ base: 3, md: 6 }} fontSize="sm">
+          <HStack
+            spacing={6}
+            fontSize="sm"
+            display={{ base: "none", md: "flex" }}
+          >
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -147,7 +167,44 @@ export function SiteHeader() {
               </Link>
             ))}
           </HStack>
+
+          <IconButton
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isOpen}
+            aria-controls="site-nav-menu"
+            icon={isOpen ? <CloseIcon /> : <MenuIcon />}
+            variant="ghost"
+            color="gray.700"
+            display={{ base: "inline-flex", md: "none" }}
+            onClick={onToggle}
+          />
         </Flex>
+
+        {isOpen ? (
+          <VStack
+            id="site-nav-menu"
+            as="nav"
+            align="stretch"
+            spacing={1}
+            pt={4}
+            display={{ md: "none" }}
+          >
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                py={2}
+                px={1}
+                fontSize="sm"
+                color="gray.700"
+                _hover={{ color: "gray.900", textDecoration: "none" }}
+                onClick={onClose}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </VStack>
+        ) : null}
       </Container>
     </Box>
   );
@@ -187,8 +244,7 @@ export function SiteFooter() {
 
           <Box>
             <Text color="gray.600" fontSize="sm">
-              © {new Date().getFullYear()} Samarpan Dutta. All opinions are my
-              own.
+              © 2026 Samarpan Dutta. All opinions are my own.
             </Text>
             <Box mt={3}>
               <SocialLinks />
